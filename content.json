@@ -1,0 +1,47 @@
+{
+  "site": {
+    "title": "Chaitalee Sohoni — Illustrator & Maker of Things",
+    "description": "Chaitalee Sohoni is an illustrator and maker of things who loves drawing, painting in watercolour and learning animation. Portfolio coming soon.",
+    "language": "en",
+    "themeColor": "#f4efe6"
+  },
+
+  "nav": {
+    "brand": "Chaitalee Sohoni",
+    "instagram": {
+      "url": "https://www.instagram.com/chaitaleesohoni/",
+      "label": "Follow Chaitalee Sohoni on Instagram"
+    }
+  },
+
+  "hero": {
+    "eyebrow": "Illustrator  ·  Maker of things",
+    "headline": "Chaitalee Sohoni",
+    "subheadline": "Drawing, painting in watercolour and learning animation — one small sketch at a time.",
+    "note": "A home for her work is being painted. Coming soon.",
+    "image": {
+      "src": "assets/walle-watercolour.webp",
+      "alt": "Watercolour illustration of WALL·E by Chaitalee Sohoni"
+    }
+  },
+
+  "footer": {
+    "text": "© 2026 Chaitalee Sohoni. All illustrations are her own."
+  },
+
+  "typography": {
+    "fonts": {
+      "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap",
+      "headline": "'Playfair Display', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif",
+      "body": "'Cormorant Garamond', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif"
+    },
+    "sizes": {
+      "brand": "text-lg sm:text-xl",
+      "eyebrow": "text-xs sm:text-sm md:text-base",
+      "headline": "text-5xl sm:text-6xl md:text-7xl lg:text-8xl short:text-6xl",
+      "subheadline": "text-xl sm:text-2xl md:text-3xl short:text-xl",
+      "note": "text-sm sm:text-base md:text-lg",
+      "footer": "text-sm sm:text-base"
+    }
+  }
+}

@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en" class="h-full antialiased">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-text="site.title">Chaitalee Sohoni</title>
+  <meta name="description" content="" data-attr="content:site.description" />
+  <meta name="theme-color" content="#f4efe6" data-attr="content:site.themeColor" />
+  <link rel="icon" href="assets/walle-watercolour.webp" data-attr="href:hero.image.src" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link id="google-fonts" rel="stylesheet" href="" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          screens: {
+            // Short landscape viewports (small laptops, phones rotated): tighten the vertical rhythm
+            short: { raw: '(min-width: 640px) and (max-height: 720px)' },
+          },
+          colors: {
+            paper: '#f4efe6',
+            ink: '#2a2420',
+            ochre: '#b98a3c',
+            sage: '#8a9a7b',
+          },
+          fontFamily: {
+            headline: ['var(--font-headline)'],
+            body: ['var(--font-body)'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --font-headline: 'Playfair Display', Georgia, serif;
+      --font-body: 'Cormorant Garamond', Georgia, serif;
+      --paper: #f4efe6;
+    }
+
+    html, body { background: var(--paper); }
+
+    /* Hide content until content.json has been applied so the placeholders never flash. */
+    body[data-state="loading"] #page { opacity: 0; }
+    #page { transition: opacity 600ms ease-out; }
+
+    /* ---------- Watercolour paper texture (pure CSS / inline SVG, no image files) ---------- */
+    .paper-base {
+      background:
+        radial-gradient(120% 90% at 50% 0%, #faf7f0 0%, var(--paper) 55%, #ece4d6 100%);
+    }
+    .paper-grain {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+      background-size: 300px 300px;
+      opacity: 0.15;
+      mix-blend-mode: multiply;
+    }
+    .paper-mottle {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
+      background-size: 900px 900px;
+      opacity: 0.12;
+      mix-blend-mode: multiply;
+    }
+    .paper-fibres {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.6' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+      background-size: 600px 600px;
+      opacity: 0.07;
+      mix-blend-mode: multiply;
+    }
+    .paper-vignette {
+      background: radial-gradient(ellipse 85% 80% at 50% 45%, transparent 55%, rgba(84, 66, 44, 0.12) 100%);
+    }
+    /* Soft pigment washes behind the headline */
+    .wash-ochre {
+      background: radial-gradient(closest-side, rgba(185, 138, 60, 0.28), rgba(185, 138, 60, 0) 72%);
+      filter: blur(18px);
+    }
+    .wash-sage {
+      background: radial-gradient(closest-side, rgba(138, 154, 123, 0.26), rgba(138, 154, 123, 0) 72%);
+      filter: blur(22px);
+    }
+
+    /* ---------- Illustration ---------- */
+    .illustration {
+      mix-blend-mode: multiply;      /* the photo's white paper disappears into our paper */
+      -webkit-mask-image: radial-gradient(ellipse 88% 96% at 50% 58%, #000 62%, transparent 100%);
+              mask-image: radial-gradient(ellipse 88% 96% at 50% 58%, #000 62%, transparent 100%);
+    }
+
+    /* ---------- Overlaid type: readable against the drawing ---------- */
+    .headline-shadow {
+      text-shadow:
+        0 1px 0 rgba(255, 252, 245, 0.9),
+        0 0 18px rgba(244, 239, 230, 0.95),
+        0 0 42px rgba(244, 239, 230, 0.9);
+    }
+    .copy-shadow {
+      text-shadow:
+        0 1px 0 rgba(255, 252, 245, 0.9),
+        0 0 14px rgba(244, 239, 230, 0.95),
+        0 0 30px rgba(244, 239, 230, 0.9);
+    }
+    /* A soft, feathered wash of paper behind the text block (frosted, not boxy) */
+    .text-wash {
+      background: rgba(244, 239, 230, 0.55);
+      -webkit-backdrop-filter: blur(6px);
+              backdrop-filter: blur(6px);
+      -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 40%, transparent 100%);
+              mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 40%, transparent 100%);
+    }
+
+    .ink-rule {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(42, 36, 32, 0.55) 20%, rgba(42, 36, 32, 0.55) 80%, transparent);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .rise { animation: rise 1100ms cubic-bezier(.2,.7,.2,1) both; }
+      .rise-delay-1 { animation-delay: 120ms; }
+      .rise-delay-2 { animation-delay: 240ms; }
+      .rise-delay-3 { animation-delay: 360ms; }
+      .float-in { animation: floatIn 1400ms cubic-bezier(.2,.7,.2,1) both; }
+      @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+      @keyframes floatIn { from { opacity: 0; transform: translateY(28px) scale(.985); } to { opacity: 1; transform: none; } }
+    }
+  </style>
+</head>
+
+<body data-state="loading" class="min-h-full font-body text-ink selection:bg-ochre/30">
+  <div id="page" class="relative min-h-[100svh] overflow-hidden paper-base">
+
+    <!-- Paper texture layers -->
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 paper-mottle"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 paper-fibres"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 paper-grain"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 paper-vignette"></div>
+
+    <!-- Pigment washes -->
+    <div aria-hidden="true" class="pointer-events-none absolute left-1/2 top-[18%] h-[46vmin] w-[70vmin] -translate-x-[62%] rounded-full wash-ochre"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute left-1/2 top-[26%] h-[40vmin] w-[60vmin] -translate-x-[30%] rounded-full wash-sage"></div>
+
+    <!-- Header -->
+    <header class="absolute inset-x-0 top-0 z-30">
+      <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8 sm:py-7" aria-label="Primary">
+        <a href="#" class="font-headline font-bold tracking-tight text-ink/90 hover:text-ink transition-colors"
+           data-text="nav.brand" data-classes="typography.sizes.brand">Chaitalee Sohoni</a>
+
+        <a href="#" target="_blank" rel="noopener noreferrer"
+           class="group inline-flex h-11 w-11 items-center justify-center rounded-full border border-ink/15 bg-paper/60 text-ink/80 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-ink/35 hover:text-ink hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ochre"
+           data-attr="href:nav.instagram.url|aria-label:nav.instagram.label|title:nav.instagram.label"
+           aria-label="Instagram">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
+          </svg>
+        </a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <!-- No z-index here on purpose: a stacking context would stop the illustration's multiply blend reaching the paper layers -->
+    <main id="hero" class="relative flex min-h-[100svh] flex-col">
+
+      <!-- Illustration: fills the bottom half of the page -->
+      <figure class="pointer-events-none absolute inset-x-0 bottom-0 m-0 flex h-[56svh] items-end justify-center sm:h-[62svh] short:h-[54svh]">
+        <img class="illustration float-in h-full w-auto max-w-[96vw] object-contain object-bottom select-none"
+             src="assets/walle-watercolour.webp" alt=""
+             data-attr="src:hero.image.src|alt:hero.image.alt"
+             width="720" height="1000" decoding="async" fetchpriority="high" />
+      </figure>
+
+      <!-- Overlaid copy: fills the top half and overlaps the top of the drawing -->
+      <div class="relative z-20 mx-auto flex min-h-[48svh] w-full max-w-6xl flex-col items-center justify-end px-5 pt-24 text-center sm:min-h-[42svh] short:min-h-[46svh] short:pt-20 sm:px-8">
+        <div class="relative">
+          <div aria-hidden="true" class="pointer-events-none absolute -inset-x-10 -top-6 -bottom-2 text-wash sm:-inset-x-20 sm:-top-8"></div>
+
+          <p class="relative rise font-body font-semibold uppercase tracking-[0.22em] text-ink/70 copy-shadow sm:tracking-[0.32em]"
+             data-text="hero.eyebrow" data-classes="typography.sizes.eyebrow">Illustrator · Maker of things</p>
+
+          <h1 class="relative rise rise-delay-1 mt-3 font-headline font-black leading-[0.95] tracking-tight text-ink headline-shadow text-balance sm:mt-4"
+              data-text="hero.headline" data-classes="typography.sizes.headline">Chaitalee Sohoni</h1>
+
+          <div aria-hidden="true" class="relative rise rise-delay-2 mx-auto mt-5 w-24 ink-rule sm:mt-7 sm:w-32"></div>
+
+          <p class="relative rise rise-delay-2 mx-auto mt-5 max-w-2xl font-body font-medium italic leading-snug text-ink/85 copy-shadow text-balance"
+             data-text="hero.subheadline" data-classes="typography.sizes.subheadline">Drawing, painting in watercolour and learning animation.</p>
+
+          <p class="relative rise rise-delay-3 mt-4 font-body font-semibold tracking-wide text-ink/65 copy-shadow"
+             data-text="hero.note" data-classes="typography.sizes.note">Coming soon.</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-20 px-5 pb-5 text-center font-body text-ink/55 sm:px-8 md:absolute md:bottom-6 md:left-8 md:p-0 md:text-left">
+      <p data-text="footer.text" data-classes="typography.sizes.footer" class="copy-shadow">© Chaitalee Sohoni</p>
+    </footer>
+  </div>
+
+  <!-- Shown only if content.json cannot be loaded -->
+  <div id="content-error" hidden class="fixed inset-x-0 bottom-0 z-50 m-4 rounded-xl border border-red-900/20 bg-red-50 p-4 font-sans text-sm text-red-900 shadow-lg">
+    <strong>content.json could not be loaded.</strong>
+    If you opened this file directly, serve the folder instead (e.g. <code>npx serve .</code> or <code>python3 -m http.server</code>) — browsers block <code>fetch()</code> on <code>file://</code> URLs.
+  </div>
+
+  <script>
+    (async function bindContent() {
+      const get = (obj, path) => path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj);
+
+      try {
+        const res = await fetch('content.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const content = await res.json();
+
+        // <html lang>, fonts, CSS variables
+        if (get(content, 'site.language')) document.documentElement.lang = content.site.language;
+        const fontsUrl = get(content, 'typography.fonts.googleFontsUrl');
+        if (fontsUrl) document.getElementById('google-fonts').href = fontsUrl;
+        const headlineFont = get(content, 'typography.fonts.headline');
+        const bodyFont = get(content, 'typography.fonts.body');
+        if (headlineFont) document.documentElement.style.setProperty('--font-headline', headlineFont);
+        if (bodyFont) document.documentElement.style.setProperty('--font-body', bodyFont);
+        const paper = get(content, 'site.themeColor');
+        if (paper) document.documentElement.style.setProperty('--paper', paper);
+
+        // data-text="a.b.c" -> textContent
+        document.querySelectorAll('[data-text]').forEach(el => {
+          const value = get(content, el.dataset.text);
+          if (typeof value === 'string') el.textContent = value;
+        });
+
+        // data-attr="href:a.b|alt:c.d" -> attributes
+        document.querySelectorAll('[data-attr]').forEach(el => {
+          el.dataset.attr.split('|').forEach(pair => {
+            const [attr, path] = pair.split(':').map(s => s.trim());
+            const value = get(content, path);
+            if (typeof value === 'string' && value.length) el.setAttribute(attr, value);
+          });
+        });
+
+        // data-classes="typography.sizes.headline" -> Tailwind classes (font sizing lives in JSON)
+        document.querySelectorAll('[data-classes]').forEach(el => {
+          const value = get(content, el.dataset.classes);
+          if (typeof value === 'string') el.classList.add(...value.split(/\s+/).filter(Boolean));
+        });
+
+        // Wait for the headline font so the reveal doesn't reflow mid-animation
+        if (document.fonts && headlineFont) {
+          const family = headlineFont.split(',')[0].replace(/['"]/g, '').trim();
+          await Promise.race([
+            Promise.all([document.fonts.load(`900 1em "${family}"`), document.fonts.load(`700 1em "${family}"`)]),
+            new Promise(r => setTimeout(r, 1800)),
+          ]);
+        }
+      } catch (err) {
+        console.error('Failed to load content.json', err);
+        document.getElementById('content-error').hidden = false;
+      } finally {
+        document.body.dataset.state = 'ready';
+      }
+    })();
+  </script>
+</body>
+</html>
